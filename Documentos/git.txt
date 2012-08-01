@@ -55,13 +55,17 @@ Usando o command prompt mude para essa pasta e execute o seguinte comando:
 git init
 A resposta deve ser parecida com o que se segue:
 Initialized empty Git repository in /home/vilmar/repo1/.git/
-Uma coisa a ser notada é que o comando vai criar uma pasta chamada .git dentro da pasta repo1. Essa pasta será utilizada pelo git para armazenar todas as informações relacionadas ao repositório.
+Uma coisa a ser notada é que o comando vai criar uma pasta chamada .git dentro da pasta repo1. Essa pasta será utilizada pelo git para armazenar todas as informações relacionadas ao repositório, além das atualizações.
 Outra coisa que deve ser dita é que o comando "git init" não coloca nenhum arquivo no repositório, apenas o cria. É função do usuário informar ao git quais são os arquivos e pastas que serão incluidos no repositório.
 O fato de um arquivo estar presente na pasta de um repositório não o inclui automaticamente nesse repositório.
 E para complicar um pouco mais, o mesmo vale para as alterações feitas nos arquivos.
 Suponha que o arquivo a.txt já esteja incluido no repositório e que eu decida efetuar uma alteração nesse arquvo. Após essa alteração, eu terei de informar ao git que a alteração deve ser incluida no repositório também.
 O processo de adicionar arquivos/pastas/alterações ao repositório é feito em duas fases. Na primeira fase vamos usar o comando "git add" para marcar as  alterações que serão incluidas no repositório. A essa fase damos o nome de staging.
 Na segunda fase vamos usar o comando "git commit" para que as modificações feitas na fase anterior sejam efetivadas no repositório. A essa fase damos o nome de committing.
+Uma coisa importante que precisa ser dita é que o repositório possui 3 áreas lógicas.
+A primeira é chamada de "working tree" e contem todos os arquivos do repósitorio. É a área utilizada pelo usuário para editar os arquivos.
+A segunda área é chamada de index e contém uma fotografia de todos os arquivos do projeto. É nela que os arquivos adicionados pelo comando "git add" são colocados.
+A terceira é a área que guarda os commits feitos no repositório.
 
 Vamos a um exemplo prático utilizando o repositório criado anteriormente, lembrando que os comandos devem ser executados no prompt de comandos.
 Inicialmente vamos perguntar ao git qual é a situação atual, e para tal vamos utilizar o comando "git status".
