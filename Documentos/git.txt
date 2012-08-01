@@ -302,3 +302,36 @@ informa que essa linha foi incluida.
 +linha 2 
 Informa que essa linha foi incluida.
 
+
+Criando um repositório a partir de um repositório já existente.
+
+Até agora aprendemos a criar um repositório a partir de uma pasta existente na nossa máquina local, usando o comando "git init".
+A outra forma de se criar um repositório é fazer um clone de um repositório já exisstente, não importando se o repositório já existente está na máquina local do usuário ou em uma outra máquina qualquer.
+O comando que utilizaremos para tal é o "git clone".
+Para começar vamos fazer um clone do repositório repo1 criado préviamente.
+Crie uma pasta chamada clone, faça um cd para ela
+e execute o seguinte comando:
+git clone /home/vilmar/repo1
+Lembrando que "/home/vilmar/repo1" é o nome da pasta aonde eu criei o meu repositório, use o nome correto na sua máquina.
+Aresposta deve ser parecida com o que segue:
+Cloning into 'repo1'...
+done.
+
+Dentro da pasta clone deve ser criada uma pasta chamada repo1, e acredite, é uma cópia do repositório repo1 criado anterior mente.
+Para confirmar, faça um cd par a pasta repo1 que está dentro da pasta clone e execute o comando "git log".
+Depois faça um cd para a pasta repo1 criada anteriormente e também execute o comando "git log". Compare os dois resultados e verifique que eles são iguais.
+
+Se o repositório a ser clonado estiver em outra máquina que não a sua máquina local, o processo de clone é o mesmo.
+O que muda é que vamos substituir no comando "git clone" o nome da pasta aonde está o repositório a ser clonado por uma url.
+Para dar um exemplo prático, vamos fazer um clone do repositório Freevox dentro da pasta clone criada anteriormente.
+git clone https://github.com/magoolation/FreeVox
+Aresposta deve ser parecida com o que segue:
+
+Cloning into 'FreeVox'...
+remote: Counting objects: 65, done.
+remote: Compressing objects: 100% (37/37), done.
+remote: Total 65 (delta 8), reused 59 (delta 5)
+Unpacking objects: 100% (65/65), done.
+
+A exemplo do que aconteceu anteriormente,voce vai encontrar dentro da pasta clone a pasta Freevox.  Faça um cd para a pasta Freevox e execute o comando "git log".
+
