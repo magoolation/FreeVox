@@ -52,15 +52,15 @@ git init
 A resposta deve ser parecida com o que se segue:
 Initialized empty Git repository in /home/vilmar/repo1/.git/
 Uma coisa a ser notada é que o comando vai criar uma pasta chamada .git dentro da pasta repo1. Essa pasta será utilizada pelo git para armazenar todas as informações relacionadas ao repositório.
-Outra coisa que deve ser dita é que o comando git init não coloca nenhum arquivo no repositório, apenas o cria. É função do usuário informar ao git quais são os arquivos e pastas que serão incluidos no repositório.
+Outra coisa que deve ser dita é que o comando "git init" não coloca nenhum arquivo no repositório, apenas o cria. É função do usuário informar ao git quais são os arquivos e pastas que serão incluidos no repositório.
 O fato de um arquivo estar presente na pasta de um repositório não o inclui automaticamente nesse repositório.
 E para complicar um pouco mais, o mesmo vale para as alterações feitas nos arquivos.
 Suponha que o arquivo a.txt já esteja incluido no repositório e que eu decida efetuar uma alteração nesse arquvo. Após essa alteração, eu terei de informar ao git que a alteração deve ser incluida no repositório também.
-O processo de adicionar arquivos/pastas/alterações ao repositório é feito em duas fases. Na primeira fase vamos usar o comando git add para marcar as  alterações que serão incluidas no repositório. A essa fase da-se o nome de staging.
-Na segunda fase vamos usar o comando git commit para que as modificações feitas na fase anterior sejam efetivadas no repositório. A essa fase damos o nome de committing.
+O processo de adicionar arquivos/pastas/alterações ao repositório é feito em duas fases. Na primeira fase vamos usar o comando "git add" para marcar as  alterações que serão incluidas no repositório. A essa fase damos o nome de staging.
+Na segunda fase vamos usar o comando "git commit" para que as modificações feitas na fase anterior sejam efetivadas no repositório. A essa fase damos o nome de committing.
 
 Vamos a um exemplo prático utilizando o repositório criado anteriormente, lembrando que os comandos devem ser executados no prompt de comandos.
-Inicialmente vamos perguntar ao git qual é a situação atual, e para tal vamos utilizar o comando git status.
+Inicialmente vamos perguntar ao git qual é a situação atual, e para tal vamos utilizar o comando "git status".
 
 Git status
 # On branch master 
@@ -79,16 +79,16 @@ Olhhando para a resposta do comando, temos algumas informações bastante intere
 Esta linha nos informa que existem arquivos modificados, mas que essas modificações ainda não estão sob controle do git.
 
 #   (use "git add <file>..." to include in what will be committed) 
-Esta linha nos informa que devemos utilizar o comando git add para que essas modificações sejam incluidas no próximo commit.
+Esta linha nos informa que devemos utilizar o comando "git add" para que essas modificações sejam incluidas no próximo commit.
 
 #	a.txt 
 #	b.txt 
 As duas linhas anteriores informam quais são os arquivos modificados e que ainda não foram incluidos no próximo commit.
 
-Podemos então usar o comando git add a.txt b.txt para incluir os dois arquivos. Se apenas quisermos incluir as modificações feitas no arquivo a.txt, usamos o comando git add a.txt.
-Uma forma rápida de incluir todas as modificações é usar o comando “git add .”.
+Podemos então usar o comando "git add a.txt b.txt" para incluir os dois arquivos. Se apenas quisermos incluir as modificações feitas no arquivo a.txt, usamos o comando "git add a.txt".
+Uma forma rápida de incluir todas as modificações é usar o comando "git add .", mas é preciso ter cuidado pois voce pode acabar incluindo mais do que deseja. Para evitar inclusões indesejadas especifique os arquivos no comando.
 
-git add .
+git add a.txt b.txt
 Git status
 # On branch master 
 # 
@@ -99,17 +99,18 @@ Git status
 # 
 #	new file:   a.txt 
 #	new file:   b.txt 
-# 
-Repare na resposta dada pelo comando git status após o comando git add.
+#
+ 
+Repare na resposta dada pelo comando "git status" após o comando "git add".
 # Changes to be committed: 
-A resposta nos informa que existem alterações que devem ser aplicadas no repositório. “Changes to be committed:”.
-O próximo passo é fazer o commit dessas alterações, e para tal, vamos utilizar o comando “git commit”.
+A resposta nos informa que existem alterações que devem ser aplicadas no repositório. "Changes to be committed:".
+O próximo passo é fazer o commit dessas alterações, e para tal, vamos utilizar o comando "git commit".
 
 git commit -m "primeiro commit"
 Repare que no comando usei a opção  -m de mensagem e um texto entre aspas. O texto será armazenado no repositório e serve para descrever o motivo do commit.
 Uma boa prática é usar descriçoes coerentes com o motivo do commit. Caso a opção -m não seja utilizada, o git vai invocar um editor de texto para que o usuário possa editar a descrição do commit. Não sei qual editor será utilizado no windows.
 
-A resposta do comando commit é parecida com o que se segue:
+A resposta do comando "git commit" é parecida com o que se segue:
 [master (root-commit) bc75312] primeiro commit 
  0 files changed 
  create mode 100644 a.txt 
@@ -126,7 +127,7 @@ Ele é um Sha1 gerado a partir do conteudo do commit e utiliza 40 dígitos hexa 
  create mode 100644 b.txt 
 As três linhas anteriores nos informam que nenhum arquivo foi alterado e que dois arquivos foram criados.
 
-Veja a resposta do comando “git status” após o commit.
+Veja a resposta do comando "git status" após o commit.
 git status
 
 # On branch master 
@@ -137,7 +138,7 @@ A área está limpa e não existe nenhum commit para ser feito. Todas as altera�
 Vamos agora alterar o conteúdo do arquivo a.txt  para começar o processo de uma nova modificação.
 Incluirei nesse arquivo uma nova linha.
 
-Veja a resposta do comando “git status” após essa modificação.
+Veja a resposta do comando "git status" após essa modificação.
 Git status
 # On branch master 
 # Changes not staged for commit: 
@@ -148,7 +149,7 @@ Git status
 # 
 no changes added to commit (use "git add" and/or "git commit -a") 
 
-Olhando para a resposta, podemos notar que o git nos informa que existem alterações que ainda não foram marcadas para que entrem no próximo commit.
+Olhando para a resposta, podemos notar que o git nos informa a existencia de alterações ainda não marcadas para entrarem no próximo commit.
 
 Vamos fazer o que o git nos sugere, adicionar essas alterações para que elas entrem no próximo commit.
 Git add a.txt
@@ -165,7 +166,7 @@ A resposta nos mostra que existem alterações que devem ser efetivadas no próx
 Existem outras informações importantes que veremos mais adiante.
 
 Vamos agora ver o que acontece se alterarmos o arquivo b.txt antes de fazer o commit das alterações feitas no arquivo a.txt.
-Como sempre, o comando “git status” será o nosso amigo.
+Como sempre, o comando "git status" será o nosso amigo.
 Git status
 
 # On branch master 
@@ -198,17 +199,17 @@ Existem alterações esperando por um commit e o arquivo em questão é o a.txt.
 
 Existem alterações que ainda não foram marcadas para um commit e o arquivo em questão é o b.txt.
 
-Tudo isto para dizer que, se executarmos o comando “git commit” nesse momento, apenas as alterações feitas no arquivo a.txt serão efetivadas.
+Tudo isto para dizer que, se executarmos o comando "git commit" nesse momento, apenas as alterações feitas no arquivo a.txt serão efetivadas.
 
 Recapitulando:
 Para que as alterações feitas sejam colocadas no repositório, precisamos executar dois passos.
-1: Informar ao git as alterações a serem consideradas no próximo commit. Usamos para tal o comando “git add”.
-2: Informar ao git que o commit deve ser feito.
+1: Informar ao git as alterações a serem consideradas no próximo commit. Usamos para tal o comando "git add".
+2: Informar ao git que o commit deve ser feito. Usamos para tal o comando "git commit".
 
 Uma coisa que não foi dita antes mas que pode ser dita agora, é que existe um atalho para executarmos os dois passos com um unico comando.
-Basta que se inclua no comando “git commit” a opção -a.
+Basta que se inclua no comando "git commit" a opção -a.
 O comando ficaria da seguinte forma:
-git commit -a -m “alterações no arquivo a.txt e b.txt”
+git commit -a -m "alterações no arquivo a.txt e b.txt"
 A resposta para esse comando seria seguinte:
 
 [master 6f2d250] alterações no arquivo a.txt e b.txt 
@@ -222,7 +223,7 @@ Um outro ponto fundamental é que você não misture as modificações. Supondo 
 2: Corrija o segundo erro, teste a correção e faça commit.
 Evite, se possível, colocar as duas correções em um único commit.
 
-O comando que nos mostra quem alterou e a documentação das alterações, é o comando “git log”.
+O comando que nos mostra quem alterou e a documentação das alterações, é o comando "git log".
 Git log
 
 commit 6f2d25013af746c5bc062b29e4883ff034c29e6c 
@@ -256,10 +257,10 @@ Nesse caso será gerado um arquivo git.log com toda a saída do comando. Isto va
 Um problema que voce pode ter, é que se voce gerar o arquivo git.log dentro da pasta repo1, pasta aonde reside o repositório, o git vai te informar que o arquivo git.log ainda não foi marcado para fazer parte do próximo commit.
 Mais adiante veremos que é possível configurar o git para que ele ignore certos arquivos. Poderemos informar ao git, por exemplo, que o arquivo chamado git.log nunca será incluido no repositório.
 
-O comando “git log” tem ainda a opção -p que é bastante interessante. A opção mostra o que foi alterado dentro dos arquivos que fazem parte do commit. Atualmente o arquivo a.txt possui apenas uma linha com o seguinte conteudo:
+O comando "git log" tem ainda a opção -p que é bastante interessante. A opção mostra o que foi alterado dentro dos arquivos que fazem parte do commit. Atualmente o arquivo a.txt possui apenas uma linha com o seguinte conteudo:
 linha 1
 
-Vou alterar esse arquivo colocando um “.” no final da primeira linha e acrescentar uma segunda linha.
+Vou alterar esse arquivo colocando um "." no final da primeira linha e acrescentar uma segunda linha.
 git log -p -1
 A opção -1 limita a quantidade de commits a ser mostrada, um no nosso caso.
 
