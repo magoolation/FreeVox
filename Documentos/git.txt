@@ -32,6 +32,7 @@ git version 1.7.9.5
 Talvez a versão não seja idêntica a que foi apresentada no exemplo, mas isso não tem muita importância.
 
 O próximo passo é informar ao git um nome de usuário e um e-mail. Essas informações serão utilizadas pelo git para identificar o autor das manutenções do conjunto de arquivos contidos no repósitorio.
+As informações podem ser configuradas a nível global, valendo para todos os repositórios, ou individualmente para cada repositório.
 Este procedimento é feito executando-se os seguintes comandos:
 git config --global user.name "José Vilmar Estácio de Souza"
 git config --global user.email "vilmar@informal.com.br"
@@ -42,6 +43,9 @@ git config –list
 A resposta do comando deve ser parecida com o seguinte:
 user.name=José Vilmar Estácio de Souza
 user.email=vilmar@informal.com.br
+
+A opção --global indica quetodos os repositórios estão configurados para o mesmo nome de usuário e o mesmo e-mail
+Caso voce queira ou precise configurar um e-mail e/ou nome de usuário diferente para algum dos seus repositórios, voce pode fazer um cd para a pasta aonde está o repositório e executar os comandos de configuração sem a opção --global.
 
 Agora que já temos o git instalado e configurado, está na hora de criar o nosso primeiro repositório e colocar nele alguns arquivos.
 O repositório pode ser criado fazendo-se um clone de um repositório já existente ou então a partir de uma pasta local da máquina do usuário. Se optarmos pela primeira opção, fazer um clone de um repositório já existente, este pode estar na máquina de quem está criando o repositório ou então em uma máquina remota.
