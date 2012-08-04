@@ -84,10 +84,10 @@ nothing added to commit but untracked files present (use "git add" to track)
 
 Olhhando para a resposta do comando, temos algumas informações bastante interessantes:
 # Untracked files: 
-Esta linha nos informa que existem arquivos modificados, mas que essas modificações ainda não estão sob controle do git.
+Esta linha nos informa que existem arquivos modificados, mas que essas modificações ainda não estão sob controle do git. Os arquivos estão modificados na nossa "working tree" mas ainda não foram adicionados ao index.
 
 #   (use "git add <file>..." to include in what will be committed) 
-Esta linha nos informa que devemos utilizar o comando "git add" para que essas modificações sejam incluidas no próximo commit.
+Esta linha nos informa que devemos utilizar o comando "git add" para que essas modificações sejam incluidas no próximo commit, ou seja: adicionadas ao index.
 
 #	a.txt 
 #	b.txt 
@@ -108,10 +108,10 @@ Git status
 #	new file:   a.txt 
 #	new file:   b.txt 
 #
- 
+
 Repare na resposta dada pelo comando "git status" após o comando "git add".
 # Changes to be committed: 
-A resposta nos informa que existem alterações que devem ser aplicadas no repositório. "Changes to be committed:".
+A resposta nos informa que existem alterações que devem ser aplicadas no repositório. "Changes to be committed:". Na prática as alterações estão na área chamada de index.
 O próximo passo é fazer o commit dessas alterações, e para tal, vamos utilizar o comando "git commit".
 
 git commit -m "primeiro commit"
@@ -157,7 +157,7 @@ Git status
 # 
 no changes added to commit (use "git add" and/or "git commit -a") 
 
-Olhando para a resposta, podemos notar que o git nos informa a existencia de alterações ainda não marcadas para entrarem no próximo commit.
+Olhando para a resposta, podemos notar que o git nos informa a existencia de alterações ainda não marcadas para entrarem no próximo commit. As alterações estão presentes na nossa "working tree".
 
 Vamos fazer o que o git nos sugere, adicionar essas alterações para que elas entrem no próximo commit.
 Git add a.txt
@@ -170,7 +170,7 @@ git status
 #	modified:   a.txt 
 # 
 
-A resposta nos mostra que existem alterações que devem ser efetivadas no próximo commit e que o arquivo modificado é o a.txt.
+A resposta nos mostra que existem alterações que devem ser efetivadas no próximo commit e que o arquivo modificado é o a.txt. As alterações estão na área chamada de index.
 Existem outras informações importantes que veremos mais adiante.
 
 Vamos agora ver o que acontece se alterarmos o arquivo b.txt antes de fazer o commit das alterações feitas no arquivo a.txt.
@@ -196,7 +196,7 @@ Vamos dividir a resposta em duas partes:
 # 
 #	modified:   a.txt 
 
-Existem alterações esperando por um commit e o arquivo em questão é o a.txt.
+Existem alterações esperando por um commit e o arquivo em questão é o a.txt. Essas alterações estão presentes na área chamada de index.
 
 # Changes not staged for commit: 
 #   (use "git add <file>..." to update what will be committed) 
@@ -205,9 +205,9 @@ Existem alterações esperando por um commit e o arquivo em questão é o a.txt.
 #	modified:   b.txt 
 # 
 
-Existem alterações que ainda não foram marcadas para um commit e o arquivo em questão é o b.txt.
+Existem alterações que ainda não foram marcadas para um commit e o arquivo em questão é o b.txt. Essas alterações estão na nossa "working tree".
 
-Tudo isto para dizer que, se executarmos o comando "git commit" nesse momento, apenas as alterações feitas no arquivo a.txt serão efetivadas.
+Tudo isto para dizer que, se executarmos o comando "git commit" nesse momento, apenas as alterações feitas no arquivo a.txt serão efetivadas, visto que o commit transfere para o repositório apenas as alterações que estão na área index.
 
 Recapitulando:
 Para que as alterações feitas sejam colocadas no repositório, precisamos executar dois passos.
@@ -262,8 +262,10 @@ um arquivo deste modo:
 
 git log > git.log
 Nesse caso será gerado um arquivo git.log com toda a saída do comando. Isto vale para qualquer comando do git.
-Um problema que voce pode ter, é que se voce gerar o arquivo git.log dentro da pasta repo1, pasta aonde reside o repositório, o git vai te informar que o arquivo git.log ainda não foi marcado para fazer parte do próximo commit.
+Um problema que voce pode ter, é que se voce gerar o arquivo git.log dentro da pasta repo1, pasta aonde reside o repositório, o git vai te informar que o arquivo git.log ainda não foi marcado para fazer parte do próximo commit. Isto acontece porque o arquivo git.log agora faz parte da sua "working tree".
+Então, se voce usar o comando "git add ." para adicionar arquivos da "working tree" para a área index, o arquivo git.log será adicionado indevidamente.
 Mais adiante veremos que é possível configurar o git para que ele ignore certos arquivos. Poderemos informar ao git, por exemplo, que o arquivo chamado git.log nunca será incluido no repositório.
+Podemos ainda diminuir o tamanho da saida do comando "git log" usando a opção "--pretty=oneline".
 
 O comando "git log" tem ainda a opção -p que é bastante interessante. A opção mostra o que foi alterado dentro dos arquivos que fazem parte do commit. Atualmente o arquivo a.txt possui apenas uma linha com o seguinte conteudo:
 linha 1
