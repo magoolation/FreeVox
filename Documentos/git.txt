@@ -341,3 +341,71 @@ Unpacking objects: 100% (65/65), done.
 
 A exemplo do que aconteceu anteriormente,voce vai encontrar dentro da pasta clone a pasta Freevox.  Faça um cd para a pasta Freevox e execute o comando "git log".
 
+
+Agora que aprendemos a fazer clones de um repositório, vamos aprender a atualizar o clone a partir do clonado e vice-versa.
+Ao processo de atualização de um clone a partir de um clonado vamos dar o nome de pull, e ao processo de atulização de um clonado a partir de um clone daremos o nome de push.
+Para ajudar na compreensão do processo, criei na minha máquina dois clones do repositório FreeVox.
+O primeiro reside na pasta /data/software/freevox/FreeVox e o outro reside na pasta /home/vilmar/clone/Freevox.
+Já fiz também pelo menos um commit no primeiro clone, o que o torna diferente do segundo, mas ainda não subi esse commit para o repositório central do FreeVox.
+A primeira coisa a fazer é ir para a pasta aonde está o primeiro clone do repositório.
+Para tal vou executar o seguinte comando na minha máquina:
+cd /data/software/freevox/FreeVox
+É importante dizer que esse comando não pertence ao git, mas sim ao linux aonde estou simulando o exemplo.
+Agora vou pedir ao git que me mostre os tres ultimos commits feitos no repositório.
+Usarei a opção --pretty para diminuir o tamanho da resposta.
+git log --pretty=oneline  -3
+2238e613f3bc7e2a1374fa901ac11be3bc93356b Reforço de mais alguns conceitos
+64bbbe7415374f8f7966a758835be1dbf7aba263 Algumas explicações adicionais relacion
+a791e320acd452768fa77ddafdd4219f1578b29a Adicionando  2 patterns-amend
+
+Farei o mesmo para o segundo clone.
+cd /home/vilmar/clone/FreeVox
+git log --pretty=oneline -3
+
+64bbbe7415374f8f7966a758835be1dbf7aba263 Algumas explicações adicionais relacion[m
+a791e320acd452768fa77ddafdd4219f1578b29a Adicionando  2 patterns-amend[m
+4704639380edf72d339ba12e7956792d89eadd03 Documentação de como fazer clone de rep[m
+
+Analisando as duas respostas com atenção, vamos notar que o primeiro commit da primeira resposta não é igual ao primeiro commit da segunda resposta. Notaremos também que o segundo commit da primeira resposta é igual ao primeiro commit da segunda resposta, o que nos mostra que falta um commit no segundo clone.
+Para que o commit faltante esteja presente no segundo clone, precisaremos executar dois passos:
+1: A partir do primeiro clone, colocar o commit faltante no repositório central do FreeVox.
+2: A partir do segundo clone, puxar o commit faltante.
+Executaremos a seguinte sequencia de comandos:
+cd /data/software/freevox/FreeVox/
+Lembrando mais uma vez que o comando acima não faz parte do git.
+git push
+Username for 'https://github.com': jvesouza
+Password for 'https://jvesouza@github.com': 
+To https://github.com/magoolation/FreeVox
+   64bbbe7..2238e61  master -> master
+
+O comando "git push" é responsável por transferir commits presentes no repositório local para o repositório remoto. O comando naturalmente só vai transferir os commits que ainda não estão presentes no central.
+Após a execução do comando, foi pedida um login e uma senha.
+Uma vez que os commits estão presentes no repositório remoto, posso instruir ao segundo clone que puxe esses commits.
+cd /home/vilmar/clone/FreeVox/
+git pull
+remote: Counting objects: 7, done.[K
+remote: Compressing objects: 100% (1/1)   [K
+remote: Compressing objects: 100% (1/1), done.[K
+remote: Total 4 (delta 2), reused 4 (delta 2)[K
+Unpacking objects:  25% (1/4)   
+Unpacking objects:  50% (2/4)   
+Unpacking objects:  75% (3/4)   
+Unpacking objects: 100% (4/4)   
+Unpacking objects: 100% (4/4), done.
+From https://github.com/magoolation/FreeVox
+   64bbbe7..2238e61  master     -> origin/master
+Updating 64bbbe7..2238e61
+Fast-forward
+ Documentos/git.txt |   22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+Posso executar o comando "git log" para verificar que todas as alterações estão presentes no segundo clone.
+git log --pretty=oneline -3
+2238e613f3bc7e2a1374fa901ac11be3bc93356b Reforço de mais alguns conceitos[m
+64bbbe7415374f8f7966a758835be1dbf7aba263 Algumas explicações adicionais relacion[m
+a791e320acd452768fa77ddafdd4219f1578b29a Adicionando  2 patterns-amend[m
+
+Com base na resposta do comando "git log", podemos concluir que a atualização do segundo clone foi feita.
+
+
