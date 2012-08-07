@@ -409,3 +409,120 @@ a791e320acd452768fa77ddafdd4219f1578b29a Adicionando  2 patterns-amend[m
 Com base na resposta do comando "git log", podemos concluir que a atualização do segundo clone foi feita.
 
 
+Utilizando branches.
+O que é um branch?
+Sabemos que o nosso repositório é composto por um conjunto de commits, e que cada um deles representa um certo momento da coleção de arquivos armazenada no repositório.
+Temos então uma linha de desenvolvimento que vai crescendo a medida que vamos fazendo novos commits. Agora imagine que vamos precisar de duas linhas de desenvolvimento na nossa coleção de arquivos, sem que uma interfira na outra, e sem termos dois repositórios diferentes.
+Para facilitar a nossa compreensão, vamos imaginar o seguinte cenário:
+O meu projeto tem dois arquivos, p1 e p2, e é mantido por tres usuarios, a, b e c.
+Em um dado momento do desenvolvimento, o usuarioa descobre que o arquivo p1 tem uma rotina de nome r1 que pode ser melhorada, embora ele não tenha certeza.
+O usuario resolve modificar a rotina r1 mas não pode coloca-la no repositório para que essas modificações não interfiram no resto do desenvolvimento.
+O desenvolvimento dos outros elementos do sistema não podem parar a espera de que o usuario a termine as modificações da rotina r1.
+E para complicar mais um pouco, o usuario a resolve pedir ajuda ao usuario b, e para que o usuario b possa ajudar o usuario a, as modificações precisam estar no repositório.
+Nesse momento vamos precisar de duas linhas de desenvolvimento.
+Uma para as manutenções normais e outra para a manutenção da rotina r1, presente no arquivo p1.
+Vamos utilizar o conceito de branch, que nada mais é do que a criação de uma nova linha para o desenvolvimento.
+Na prática já trabalhamos por padrão em um branch chamado master.
+Observe a resposta do comando "git status":
+git status
+# On branch master
+nothing to commit (working directory clean)
+
+A primeira linha do comando nos informa que estamos no branch chamado master. Esse é o branch padrão.
+A criação de um branch é feita pelo comando "git branch", e para executar o comando devemos estar no branch a partir do qual o novo branch pode ser criado. Sim, é possível criar um branch a partir de outro, lembrando que sempre temos o branch master.
+
+git branch
+O comando acima lista os branches presentes no repositório local e a resposta é parecida com o que se segue:
+* master
+
+Só existe um branch e o seu nome é master.
+Além disso, o simbolo de "*' indica que é o branch no qual estamos trabalhando.
+
+git branch rotina-r1
+Criamos um novo branch e demos a ele o nome de rotina-r1
+
+Agora vamos listar os branches existentes no nosso repositório.
+git branch
+* master
+  rotina-r1
+
+Repare que agora temos dois branches, um chamado master e outro chamado rotina-r1. Repare também que o branch chamado master é o branch no qual estamos trabalhando. Lembr-se do simbolo "*" antes do nome do branch.
+
+Agora vamos mudar o nosso foco para o branch rotina-r1. Isso feito com o comando "git checkout".
+git checkout rotina-r1 
+A resposta deve ser parecida com o que segue:
+Switched to branch 'rotina-r1'
+
+Vejamos agora o que nos diz o comando "git status":
+git status
+# On branch rotina-r1
+nothing to commit (working directory clean)
+
+A primeira linha da resposta nos informa que o nosso foco é o branch rotina-r1.
+
+Vamos executar o comando "git branch", aquele que mostra os branches existentes no nosso repositório.
+
+git branch
+  master
+* rotina-r1
+
+Temos dois branches, mas ter e rotina-r1, e o branch no qual estamos trabalhando é o rotina-r1.
+
+Agora vamos incluir os arquivos c.txt e d.txt no branch rotina-r1 e depois faremos  commit dessas alterações.
+Depois de feitas as alterações executaremos al guns comandos para mostrar como ficou o nosso repositório.
+
+git status
+# On branch rotina-r1
+nothing to commit (working directory clean)
+
+A resposta do comando acima mosttra que estamos no branch rotina-r1 e que  não existem alterações pendentes.
+
+git log --pretty=oneline -3
+7a149568f412b4081274ce57ae9b3b2d876044af Inclusao do arquivo d.txt
+b813f75553c51b0177ce3d2ca6ab16e71df49267 Inclusão do arquivo c.txt
+61ce98b042a2797aedbf5dfecbb4bd67459d479b incluindo mais arquivos
+
+Usamos o comando "git log" para listar os tres ultimos commits feitos nesse branch.
+
+dir
+a.txt  b.txt  c.txt  d.txt  nada
+
+O comando acima não faz parte do git, mas sim do sistema operacional. Ele mostra os arquivos presentes na pasta corrente.
+Temos os seguintes arquivos:
+a.txt, b.txt, c.txt, d.txt e nada.
+
+git checkout master
+Switched to branch 'master'
+
+git status
+# On branch master
+nothing to commit (working directory clean)
+
+O comando "git checkout" muda para o branch master e o comando "git status" confirma que agora estamos no branch master.
+
+git log --pretty=oneline -3
+61ce98b042a2797aedbf5dfecbb4bd67459d479b incluindo mais arquivos[m
+e537dc86b66f7ab267597f043ddbb4e0d2c0e0b8 alteracoes feitas para demonstrar o com[m
+6f2d25013af746c5bc062b29e4883ff034c29e6c alterações no arquivo a.txt e b.txt[m
+
+Repare que o comando "git log" nos mostra uma sequencia diferente de commits.
+Os commits que descreviam a inclusao do arquivo c.txt e do arquivo d.txt não aparecem mais. Isto acontece porque esses commits foram feitos no branch rotina-r1 e nós estamos agora trabalhando no branch master.
+
+dir
+a.txt  b.txt  nada
+
+Repare também na resposta do comando dir. Ela mostra que só temos os arquivos a.txt, b.txt e nada.
+os  arquivos c.txt e d.txt só estão presentes no branch rotina-r1.
+
+Resumindo:
+O branch nos permite o desenvolvimento paralelo de duas ou mais versões do nosso sistema.
+Podemos ter quantos branches quisermos no nosso repositório.
+para criarmos um branch de nome x no nosso repositório usamos o seguinte comando:
+git branch x
+
+Para listarmos os branches presentes no nosso repositório usamos o seguinte comando:
+git branch
+
+Para mudarmos o foco para o branch x usamos o seguinte comando:
+git checkout x
+
