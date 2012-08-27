@@ -14,8 +14,8 @@ Naturalmente as operações de empurrar e puxar alterações precisam de autoriz
 
 O git é um sistema controlador de versões a exemplo do subversion, mas enquanto o subversion está na categoria dos sistemas centralizados, o git está na categoria dos sistemas distribuidos.
 
-Agora que já sabemos o que é um sistema controlador de versões, o que é um repósitorio e o que  é o git, podemos começar a sujar as mãos.
-Inicialmente usaremos apenas um repósitório local, mas tudo que vamos aprender nessa parte do tutorial poderá ser aplicado quando estivermos utilizando repositórios remotos.
+Agora que já sabemos o que é um sistema controlador de versões, o que é um repositório e o que  é o git, podemos começar a sujar as mãos.
+Inicialmente usaremos apenas um repositório local, mas tudo que vamos aprender nessa parte do tutorial poderá ser aplicado quando estivermos utilizando repositórios remotos.
 Lembre-se que tudo que é feito no git é primeiramente feito na cópia local do seu repositório e depois propagado para outros repositórios.
 Os exemplos mostrados nesse tutorial são executados em uma máquina com o ubuntu 12.04 instalado, mas devem funcionar sem problemas em ambiente windows ou em ambiente mac.
 A versão do git utilizada nesse tutorial trabalha em modo texto, o que significa dizer que em ambiente windows devemos utilizar o command prompt para executar os comandos do git.
@@ -37,15 +37,15 @@ Este procedimento é feito executando-se os seguintes comandos:
 git config --global user.name "José Vilmar Estácio de Souza"
 git config --global user.email "vilmar@informal.com.br"
 Observe que o nome do usuário e o e-mail estão entre aspas duplas, e que existem dois hifens antes da palavra global.
-Para checar se a configuração está coreta, use o seguinte comando:
-git config –list
+Para checar se a configuração está correta, use o seguinte comando:
+git config --list
 
 A resposta do comando deve ser parecida com o seguinte:
 user.name=José Vilmar Estácio de Souza
 user.email=vilmar@informal.com.br
 
-A opção --global indica quetodos os repositórios estão configurados para o mesmo nome de usuário e o mesmo e-mail
-Caso voce queira ou precise configurar um e-mail e/ou nome de usuário diferente para algum dos seus repositórios, voce pode fazer um cd para a pasta aonde está o repositório e executar os comandos de configuração sem a opção --global.
+A opção --global indica que todos os repositórios estão configurados para o mesmo nome de usuário e o mesmo e-mail
+Caso você queira ou precise configurar um e-mail e/ou nome de usuário diferente para algum dos seus repositórios, você pode fazer um cd para a pasta aonde está o repositório e executar os comandos de configuração sem a opção --global.
 
 Agora que já temos o git instalado e configurado, está na hora de criar o nosso primeiro repositório e colocar nele alguns arquivos.
 O repositório pode ser criado fazendo-se um clone de um repositório já existente ou então a partir de uma pasta local da máquina do usuário. Se optarmos pela primeira opção, fazer um clone de um repositório já existente, este pode estar na máquina de quem está criando o repositório ou então em uma máquina remota.
@@ -63,7 +63,7 @@ Suponha que o arquivo a.txt já esteja incluido no repositório e que eu decida 
 O processo de adicionar arquivos/pastas/alterações ao repositório é feito em duas fases. Na primeira fase vamos usar o comando "git add" para marcar as  alterações que serão incluidas no repositório. A essa fase damos o nome de staging.
 Na segunda fase vamos usar o comando "git commit" para que as modificações feitas na fase anterior sejam efetivadas no repositório. A essa fase damos o nome de committing.
 Uma coisa importante que precisa ser dita é que o repositório possui 3 áreas lógicas.
-A primeira é chamada de "working tree" e contem todos os arquivos do repósitorio. É a área utilizada pelo usuário para editar os arquivos.
+A primeira é chamada de "working tree" e contem todos os arquivos do repositório. É a área utilizada pelo usuário para editar os arquivos.
 A segunda área é chamada de index e contém uma fotografia de todos os arquivos do projeto. É nela que os arquivos adicionados pelo comando "git add" são colocados.
 A terceira é a área que guarda os commits feitos no repositório.
 
@@ -94,7 +94,7 @@ Esta linha nos informa que devemos utilizar o comando "git add" para que essas m
 As duas linhas anteriores informam quais são os arquivos modificados e que ainda não foram incluidos no próximo commit.
 
 Podemos então usar o comando "git add a.txt b.txt" para incluir os dois arquivos. Se apenas quisermos incluir as modificações feitas no arquivo a.txt, usamos o comando "git add a.txt".
-Uma forma rápida de incluir todas as modificações é usar o comando "git add .", mas é preciso ter cuidado pois voce pode acabar incluindo mais do que deseja. Para evitar inclusões indesejadas especifique os arquivos no comando.
+Uma forma rápida de incluir todas as modificações é usar o comando "git add .", mas é preciso ter cuidado pois você pode acabar incluindo mais do que deseja. Para evitar inclusões indesejadas especifique os arquivos no comando.
 
 git add a.txt b.txt
 Git status
@@ -125,13 +125,13 @@ A resposta do comando "git commit" é parecida com o que se segue:
  create mode 100644 b.txt 
 
 Vamos analisar a resposta linha linha.
-[master (root-commit) bc75312] primeiro commit 
+[master (root-commit) bc75312] primeiro commit
 bc75312 é o identificador do commit.
 Para quem conhece o subversion, esse identificador é equivalente ao número da revisão.
-Ele é um Sha1 gerado a partir do conteudo do commit e utiliza 40 dígitos hexa para representá-lo, embora a mensagem só tenha mostrado 7 digitos. Mais adiante veremos na prática para que servem esses identificadores.
+Ele é um Sha1 gerado a partir do conteúdo do commit e utiliza 40 dígitos hexa para representá-lo, embora a mensagem só tenha mostrado 7 digitos. Mais adiante veremos na prática para que servem esses identificadores.
 
- 0 files changed 
- create mode 100644 a.txt 
+ 0 files changed
+ create mode 100644 a.txt
  create mode 100644 b.txt 
 As três linhas anteriores nos informam que nenhum arquivo foi alterado e que dois arquivos foram criados.
 
@@ -154,10 +154,10 @@ Git status
 #   (use "git checkout -- <file>..." to discard changes in working directory) 
 # 
 #	modified:   a.txt 
-# 
-no changes added to commit (use "git add" and/or "git commit -a") 
+#
+no changes added to commit (use "git add" and/or "git commit -a")
 
-Olhando para a resposta, podemos notar que o git nos informa a existencia de alterações ainda não marcadas para entrarem no próximo commit. As alterações estão presentes na nossa "working tree".
+Olhando para a resposta, podemos notar que o git nos informa a existência de alterações ainda não marcadas para entrarem no próximo commit. As alterações estão presentes na nossa "working tree".
 
 Vamos fazer o que o git nos sugere, adicionar essas alterações para que elas entrem no próximo commit.
 Git add a.txt
@@ -265,7 +265,7 @@ Nesse caso será gerado um arquivo git.log com toda a saída do comando. Isto va
 Um problema que voce pode ter, é que se voce gerar o arquivo git.log dentro da pasta repo1, pasta aonde reside o repositório, o git vai te informar que o arquivo git.log ainda não foi marcado para fazer parte do próximo commit. Isto acontece porque o arquivo git.log agora faz parte da sua "working tree".
 Então, se voce usar o comando "git add ." para adicionar arquivos da "working tree" para a área index, o arquivo git.log será adicionado indevidamente.
 Mais adiante veremos que é possível configurar o git para que ele ignore certos arquivos. Poderemos informar ao git, por exemplo, que o arquivo chamado git.log nunca será incluido no repositório.
-Podemos ainda diminuir o tamanho da saida do comando "git log" usando a opção "--pretty=oneline".
+Podemos ainda diminuir o tamanho da saída do comando "git log" usando a opção "--pretty=oneline".
 
 O comando "git log" tem ainda a opção -p que é bastante interessante. A opção mostra o que foi alterado dentro dos arquivos que fazem parte do commit. Atualmente o arquivo a.txt possui apenas uma linha com o seguinte conteudo:
 linha 1
@@ -314,7 +314,7 @@ Criando um repositório a partir de um repositório já existente.
 Até agora aprendemos a criar um repositório a partir de uma pasta existente na nossa máquina local, usando o comando "git init".
 A outra forma de se criar um repositório é fazer um clone de um repositório já exisstente, não importando se o repositório já existente está na máquina local do usuário ou em uma outra máquina qualquer.
 O comando que utilizaremos para tal é o "git clone".
-Para começar vamos fazer um clone do repositório repo1 criado préviamente.
+Para começar vamos fazer um clone do repositório repo1 criado previamente.
 Crie uma pasta chamada clone, faça um cd para ela
 e execute o seguinte comando:
 git clone /home/vilmar/repo1
@@ -331,7 +331,7 @@ Se o repositório a ser clonado estiver em outra máquina que não a sua máquin
 O que muda é que vamos substituir no comando "git clone" o nome da pasta aonde está o repositório a ser clonado por uma url.
 Para dar um exemplo prático, vamos fazer um clone do repositório Freevox dentro da pasta clone criada anteriormente.
 git clone https://github.com/magoolation/FreeVox
-Aresposta deve ser parecida com o que segue:
+A resposta deve ser parecida com o que segue:
 
 Cloning into 'FreeVox'...
 remote: Counting objects: 65, done.
