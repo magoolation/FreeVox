@@ -20,9 +20,14 @@ Lembre-se que tudo que é feito no git é primeiramente feito na cópia local do
 Os exemplos mostrados nesse tutorial são executados em uma máquina com o ubuntu 12.04 instalado, mas devem funcionar sem problemas em ambiente windows ou em ambiente mac.
 A versão do git utilizada nesse tutorial trabalha em modo texto, o que significa dizer que em ambiente windows devemos utilizar o command prompt para executar os comandos do git.
 
-Para instalar o git na sua máquina windows, voce deve acessar o link xxxx e baixar o arquivo sugerido.
+Para instalar o git na sua máquina windows, voce deve acessar o link http://code.google.com/p/msysgit/ e baixar o arquivo sugerido, ou seja, a versão mais recente do Msys Git que encontrar. O instalador que baixa instalará na sua máquina o Git, e ferramentas básicas dos sistemas Unix, como a shell (prompt de comandos) Bash. Deverá, no menu iniciar em programas, encontrar o Msys e activar o atalho para o Msys. Uma prompt de comandos, parecida com a prompt habitual do Windows será aberta. Todos os comandos do seu windows estarão disponníveis, mais o Git e alguns comandos portados dos ambientes Unix, como Mac ou Linux.
+
+Para instalar o Git no Mac, a forma mais simples é usando o instalador disponível em http://code.google.com/p/git-osx-installer/downloads/list?can=3&q=&sort=-uploaded&colspec=Filename+Summary+Uploaded+Size+DownloadCount. Deverá baixar a versão mais recente. E executar o ficheiro .PKG. Em alternativa, se usar um package manager como o homebrew ou macports, poderá utilizar os mesmos para instalar o Git, desde que tenha as ferramentas de desenvolvedor da Apple instaladas.
+
 Em ambiente linux derivado da distribuição debian, voce deve executar o seguinte comando:
 sudo apt-get install git-core
+
+Em Mac ou Linux (e mesmo em Windows se for suficientemente louco para tal), poderá compilar o Git a partir do código fonte, que pode obter em http://code.google.com/p/git-core/downloads/list.
 
 Uma vez instalado o git, vamos verificar se a instalação está ok. Para tal digite o seguinte comando:
 git version
